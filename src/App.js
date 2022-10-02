@@ -24,7 +24,7 @@ class App extends Component {
             previous.push(this.state.current + symbol);
             this.setState({previous, nextIsReset: true});
         }else {
-            if( (this.state.current === "0" && symbol != ".") || this.state.nextIsReset) {
+            if( (this.state.current === "0" && symbol !== ".") || this.state.nextIsReset) {
                  this.setState({
                      current: symbol,
                      nextIsReset: false
@@ -36,6 +36,14 @@ class App extends Component {
             }
         }
            
+    }
+
+    result = (symbol) => {
+        let {current, previous, nextIsReset} = this.state;
+        if(previous.length > 0) {
+            current = eval( String( previous[previous.length - 1] + current) );
+            this.setState( {current, previous: [], nextIsReset: true} );
+        }
     }
 
     render() {
@@ -56,7 +64,7 @@ class App extends Component {
             { symbol : "+", cols: 1, action: this.addToCurrent },
             { symbol : "0", cols: 2, action: this.addToCurrent },
             { symbol : ".", cols: 1, action: this.addToCurrent },
-            { symbol : "=", cols: 1, action: this.addToCurrent },
+            { symbol : "=", cols: 1, action: this.result }
             
         ];
 
