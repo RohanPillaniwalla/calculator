@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+
 import Button from "./components/Button";
 
+import "./css/styles.css";
 class App extends Component {
     constructor(props) {
         super(props);
