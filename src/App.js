@@ -19,14 +19,15 @@ class App extends Component {
     }
 
     addToCurrent = (symbol) => {
-        if(["/", "-", "+", "X"].indexOf(symbol) > -1) {
+        if(["/", "-", "+", "*"].indexOf(symbol) > -1) {
             let {previous} = this.state;
             previous.push(this.state.current + symbol);
-            this.setState({previous});
+            this.setState({previous, nextIsReset: true});
         }else {
-            if(this.state.current === "0" && symbol != ".") {
+            if( (this.state.current === "0" && symbol != ".") || this.state.nextIsReset) {
                  this.setState({
-                     current: symbol
+                     current: symbol,
+                     nextIsReset: false
                  });
             }else {
                 this.setState({
@@ -44,7 +45,7 @@ class App extends Component {
             { symbol : "7", cols: 1, action: this.addToCurrent },
             { symbol : "8", cols: 1, action: this.addToCurrent },
             { symbol : "9", cols: 1, action: this.addToCurrent },
-            { symbol : "X", cols: 1, action: this.addToCurrent },
+            { symbol : "*", cols: 1, action: this.addToCurrent },
             { symbol : "4", cols: 1, action: this.addToCurrent },
             { symbol : "5", cols: 1, action: this.addToCurrent },
             { symbol : "6", cols: 1, action: this.addToCurrent },
