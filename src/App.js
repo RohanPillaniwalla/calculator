@@ -22,9 +22,19 @@ class App extends Component {
         if(["/", "-", "+", "X"].indexOf(symbol) > -1) {
             let {previous} = this.state;
             previous.push(this.state.current + symbol);
-            this.setState(previous);
-        }else
-            this.setState({current: this.state.current + symbol});
+            this.setState({previous});
+        }else {
+            if(this.state.current === "0" && symbol != ".") {
+                 this.setState({
+                     current: symbol
+                 });
+            }else {
+                this.setState({
+                    current: this.state.current + symbol
+                });
+            }
+        }
+           
     }
 
     render() {

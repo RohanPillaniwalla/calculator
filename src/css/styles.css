@@ -33,3 +33,10 @@ input.result {
     margin-right: 50px;
     float: right;
 }
+
+.float-last {
+    position: absolute;
+    right: 50px;
+    z-index: 99;
+    color: #aaa;
+}
