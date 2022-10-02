@@ -9,12 +9,13 @@ class App extends Component {
 
         this.state = {
             current: "0",
-            previous: []
+            previous: [],
+            nextIsReset: false
         }
     }
 
     reset = () => {
-        this.setState({current: "0"});
+        this.setState({current: "0", previous: [], nextIsReset: false});
     }
 
     addToCurrent = (symbol) => {
